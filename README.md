@@ -5,7 +5,7 @@ A simple _Retrieval-Augmented Generation_ (RAG) chatbot built using Streamlit, C
   Upload multiple PDFs or text files. These are chunked and embedded, then stored in ChromaDB for fast retrieval.
 
 - **Contextual Chat**  
-  Ask questions—in plain English—and the chatbot retrieves relevant context from your documents to generate accurate answers.
+  Ask questions in plain English and the chatbot retrieves relevant context from your documents to generate accurate answers.
 
 - **Document Summarization**  
   Summarize all uploaded documents in one click.
