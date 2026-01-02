@@ -1,6 +1,7 @@
 streamlit
-openai
 sentence-transformers
-faiss-cpu
 pdfplumber
 tiktoken
+chromadb
+python-dotenv
+groq

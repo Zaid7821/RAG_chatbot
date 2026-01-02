@@ -1,0 +1,15 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Temporary verification scripts and results
+verify_constraints.py
+verify_constraints_standalone.py
+debug_imports.py
+verification_results.txt
