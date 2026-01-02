@@ -1,0 +1,10 @@
+--- Test Case 1: Answer in context ---
+Q: What is the capital of France?
+Context: ['Paris is the capital of France.']
+A: Paris.
+
+--- Test Case 2: Answer NOT in context ---
+Q: What is the capital of Germany?
+Context: ['Paris is the capital of France.']
+A: I cannot answer this based on the provided documents.
+

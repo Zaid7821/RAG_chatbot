@@ -98,11 +98,12 @@ def call_groq_chat(system: str, user: str, temperature: float=0.2, max_tokens:in
 
 def build_prompt_with_context(question: str, contexts: List[str]) -> str:
     header = (
-        "You are a helpful study assistant. Use the context below from the user's documents to answer the question. "
-        "If the context does not contain the answer, say you don't know and provide steps to find the answer.\n\n"
+        "You are a strict study assistant. You must answer the question STRICTLY based on the provided context below. "
+        "Do not use any outside knowledge, general information, or pre-training data. "
+        "If the answer cannot be found in the context, you MUST say exactly: 'I cannot answer this based on the provided documents.'\n\n"
     )
     ctxs = "\n\n".join([f"Context {i+1}:\n{c}" for i,c in enumerate(contexts)])
-    prompt = f"{header}{ctxs}\n\nUser question: {question}\n\nAnswer concisely, then give one short quiz question based on the answer."
+    prompt = f"{header}{ctxs}\n\nUser question: {question}\n\nAnswer concisely based ONLY on the context above. Do not hallucinate."
     return prompt
 
 def summarize_all_docs():
@@ -141,6 +142,8 @@ with st.sidebar:
         accept_multiple_files=True,
         type=["pdf", "txt"]
     )
+    if uploaded_files:
+        st.success(f"📂 {len(uploaded_files)} file(s) uploaded successfully!")
 
     st.markdown("### ⚙️ Processing Parameters")
     chunk_size = st.slider("Chunk size (words)", value=400, min_value=100, max_value=2000, step=50)
@@ -218,9 +221,9 @@ if ask_btn:
 
         with st.spinner("Thinking..."):
             answer = call_groq_chat(
-                system="You are a helpful tutor.",
+                system="You are a strict assistant that only answers based on the provided text.",
                 user=prompt,
-                temperature=0.2,
+                temperature=0.0,
                 max_tokens=600
             )
 
